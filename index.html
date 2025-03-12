@@ -14,6 +14,7 @@
             min-height: 100vh;
             background-color: #202124;
             overflow: hidden;
+            font-family: 'Google Sans', sans-serif;
         }
 
         .container {
@@ -82,9 +83,9 @@
         }
 
         .control-btn {
-            width: 60px;
+            width: 50px;
             /* Reverted to original size */
-            height: 60px;
+            height: 50px;
             /* Reverted to original size */
             border-radius: 50%;
             border: none;
@@ -95,7 +96,7 @@
             align-items: center;
             justify-content: center;
             transition: background-color 0.3s;
-            font-size: 1.5em;
+            font-size: 1.2em;
             /* Reverted to original size */
         }
 
@@ -127,6 +128,36 @@
             background: #dc3626;
         }
 
+        .control-btn.share {
+            position: relative;
+        }
+
+        .control-btn.share::before {
+            content: "Don't just share screen,\A let's share future work :D";
+            white-space: pre;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 4px;
+            font-size: 15.4px; /* Increased from 14px */
+            font-family: 'Google Sans', sans-serif;
+            line-height: 1.5;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s;
+            width: max-content;
+            margin-bottom: 5px;
+        }
+
+        .control-btn.share:hover::before {
+            visibility: visible;
+            opacity: 1;
+        }
+
         .bottom-right-controls {
             padding-right: 10px;
             margin-top: 0;
@@ -140,9 +171,9 @@
         }
 
         .bottom-right-controls .control-btn {
-            width: 57.6px;
+            width: 45.6px;
             /* Changed from 48px */
-            height: 57.6px;
+            height: 45.6px;
             /* Changed from 48px */
             border-radius: 50%;
             border: none;
@@ -153,7 +184,7 @@
             align-items: center;
             justify-content: center;
             transition: background-color 0.3s;
-            font-size: 1.44em;
+            font-size: 1 em;
             /* Changed from 1.2em */
         }
 
@@ -167,8 +198,8 @@
             background: rgba(32, 33, 36, 0.3);
             border-radius: 4px;
             color: #fff;
-            font-family: 'Roboto', sans-serif;
-            font-size: 24px;
+            font-family: 'Google Sans', sans-serif;
+            font-size: 22 px;
             display: flex;
             align-items: center;
             gap: 13px;
@@ -188,55 +219,56 @@
             top: 25px;
             /* Changed from 25px */
             right: 25px;
-            width: 54.5px;
+            width: 40.5px;
             /* Changed from 60px */
-            height: 54.5px;
+            height: 40.5px;
             /* Changed from 60px */
-            background-color: #d85140;
+            background-color: #569be9;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5em;
+            font-size: 1.2 em;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .panel {
-            display: none;
+        .red-circle-btn:hover {
+            background-color: #a4c1f1;
+        }
+
+        .control-btn.chat {
+            position: relative;
+        }
+
+        .control-btn.chat::after {
+            content: '';
             position: absolute;
-            top: 95px;
-            /* Changed from 90px */
-            right: 15px;
-            padding: 10px;
-            font-family: 'Roboto', sans-serif;
-            background: none;
-            /* Removed dark background */
+            top: 10px;
+            right: 11px;
+            width: 8.8px;   /* Changed from 9.3px (5% smaller) */
+            height: 8.8px;  /* Changed from 9.3px (5% smaller) */
+            background-color: #ea4335;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
         }
 
-        .panel a {
-            color: black;
-            /* Changed from white */
-            background-color: white;
-            /* Added background color */
-            text-decoration: none;
-            font-size: 1.2em;
-            /* Changed from 1em */
-            padding: 10px;
-            /* Added padding */
-            border-radius: 4px;
-            /* Added border radius */
-            display: block;
-            /* Ensure it behaves like a button */
-            font-family: 'Roboto', sans-serif;
-            /* Added Roboto font */
-            outline: none;
-            /* Removed gray outline */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
-        .panel a:hover {
-            text-decoration: underline;
-        }
         .footer {
             width: 100%;
             display: flex;
@@ -245,24 +277,167 @@
             padding-top: 10px;
             position: relative;
         }
+
+        .chat-window {
+            position: fixed;  /* Changed from absolute */
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 320px;
+            background-color: white;
+            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            flex-direction: column;
+            font-family: 'Google Sans', sans-serif;
+            z-index: 1000;  /* Added z-index */
+            border-radius: 16px 0 0 16px;  /* Added border-radius */
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            color: #202124;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #5f6368;
+            padding: 8px;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #202124;
+        }
+
+        .message a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .message a:hover {
+            text-decoration: underline;
+        }
+
+        .sender {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .timestamp {
+            color: #5f6368;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+
+        .chat-input {
+            padding: 16px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .chat-input input:focus {
+            border-color: #8bb5f8;
+        }
+
+        .chat-window.show {
+            display: flex;
+        }
+
+        .control-btn.users {
+            position: relative;
+        }
+
+        .control-btn.users::before {
+            content: "Let's connect";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Google Sans', sans-serif;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+            margin-bottom: 5px;
+        }
+
+        .control-btn.users:hover::before {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .message-box {
+            position: absolute;
+            top: 70px;
+            right: 10px;
+            padding: 10px;
+            background-color: white;
+            color: black;
+            border-radius: 4px;
+            font-family: 'Google Sans', sans-serif;
+            font-size: 14px;
+            display: none;
+            white-space: nowrap;
+            z-index: 1001;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .message-box:hover {
+            text-decoration: underline;
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
         <div class="video-container">
             <video id="mainVideo" loop autoplay muted>
-                <source src="your-video-url.mp4" type="video/mp4">
+                <source src="https://pub-c0b2bc835c7242f0a91eba59d22d3424.r2.dev/AN%20mo%CC%9B%CC%81i.mov" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <video id="selfVideo" autoplay muted></video>
-            <div class="panel" id="panel">
-                <a href="https://rnnk59vxgv.wixsite.com/website-3" target="_blank">MY PORTFOLIO</a>
-            </div>
             <div class="red-circle-btn">
                 <i class="fas fa-ellipsis-h"></i>
             </div>
+            <a href="https://rnnk59vxgv.wixsite.com/website-3" target="_blank" class="message-box">CHECK OUT MY WORK</a>
         </div>
         <div class="footer">
             <div class="info-bottom-left">
@@ -275,18 +450,32 @@
             <div class="controls">
                 <button class="control-btn mic"><i class="fas fa-microphone"></i></button>
                 <button class="control-btn camera"><i class="fas fa-video"></i></button>
-                <button class="control-btn hand"><i class="fas fa-hand-paper"></i></button>
                 <button class="control-btn share"><i class="fas fa-desktop"></i></button>
                 <button class="control-btn end-call"><i class="fas fa-phone-slash"></i></button>
             </div>
             <div class="bottom-right-controls">
-                <button class="control-btn info"><i class="fas fa-info"></i></button>
                 <button class="control-btn users"><i class="fas fa-users"></i></button>
                 <button class="control-btn chat"><i class="fas fa-comment-alt"></i></button>
-                <button class="control-btn triangle"><i class="fas fa-exclamation-triangle"></i></button>
-                <button class="control-btn lock"><i class="fas fa-lock"></i></button>
             </div>
-
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>In-call messages</h3>
+                <button class="chat-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages">
+                <div class="message">
+                    <div class="sender">
+                        Hoài An <span class="timestamp">00:00</span>
+                    </div>
+                    Check out my work <a href="https://rnnk59vxgv.wixsite.com/website-3" target="_blank">HERE</a>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Send a message to everyone">
+            </div>
         </div>
     </div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -330,7 +519,6 @@
             // Control buttons functionality
             const micBtn = document.querySelector('.mic');
             const cameraBtn = document.querySelector('.camera');
-            const handBtn = document.querySelector('.hand');
             const shareBtn = document.querySelector('.share');
             const endCallBtn = document.querySelector('.end-call');
 
@@ -362,23 +550,36 @@
                 }
             });
 
-            handBtn.addEventListener('click', () => {
-                handBtn.classList.toggle('active');
-            });
-
             shareBtn.addEventListener('click', () => {
                 // Add screen share logic here
             });
 
             endCallBtn.addEventListener('click', () => {
-                window.close();
+                window.location.href = 'goodbye.html';
             });
 
             const redCircleBtn = document.querySelector('.red-circle-btn');
-            const panel = document.getElementById('panel');
 
-            redCircleBtn.addEventListener('click', () => {
-                panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+            document.querySelector('.red-circle-btn').addEventListener('click', () => {
+                const messageBox = document.querySelector('.message-box');
+                messageBox.style.display = messageBox.style.display === 'none' || messageBox.style.display === '' ? 'block' : 'none';
+            });
+
+            const chatBtn = document.querySelector('.chat');
+            const chatWindow = document.getElementById('chatWindow');
+            const chatClose = document.querySelector('.chat-close');
+
+            chatBtn.addEventListener('click', () => {
+                chatWindow.classList.toggle('show');
+            });
+
+            chatClose.addEventListener('click', () => {
+                chatWindow.classList.remove('show');
+            });
+
+            const usersBtn = document.querySelector('.users');
+            usersBtn.addEventListener('click', () => {
+                window.open('https://rnnk59vxgv.wixsite.com/website-3/monologue', '_blank');
             });
         });
     </script>
