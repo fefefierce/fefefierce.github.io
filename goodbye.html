@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call Ended</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: white;
+            font-family: 'Roboto', sans-serif;
+            color: black;
+            text-align: center;
+        }
+        .message {
+            font-size: 2em;
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .message a {
+            color: #8ab4f8;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        .message a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="message">
+        <p>Looking forwards to a real chat with you soon, or <a href="#" onclick="createMeetLink(event)">now</a>?</p>
+    </div>
+
+    <script>
+        function createMeetLink(event) {
+            event.preventDefault();
+            window.location.href = 'https://meet.google.com/landing';
+        }
+    </script>
+</body>
+</html>
