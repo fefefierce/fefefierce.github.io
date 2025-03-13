@@ -381,34 +381,6 @@
             display: flex;
         }
 
-        .control-btn.users {
-            position: relative;
-        }
-
-        .control-btn.users::before {
-            content: "Let's connect";
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 8px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            border-radius: 4px;
-            font-size: 14px;
-            font-family: 'Google Sans', sans-serif;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s;
-            white-space: nowrap;
-            margin-bottom: 5px;
-        }
-
-        .control-btn.users:hover::before {
-            visibility: visible;
-            opacity: 1;
-        }
-
         .message-box {
             position: absolute;
             top: 70px;
@@ -475,7 +447,6 @@
                 <button class="control-btn end-call"><i class="fas fa-phone-slash"></i></button>
             </div>
             <div class="bottom-right-controls">
-                <button class="control-btn users"><i class="fas fa-users"></i></button>
                 <button class="control-btn chat"><i class="fas fa-comment-alt"></i></button>
             </div>
         </div>
@@ -491,7 +462,19 @@
                     <div class="sender">
                         Hoài An <span class="timestamp">00:00</span>
                     </div>
-                    Check out my work <a href="https://rnnk59vxgv.wixsite.com/website-3" target="_blank">HERE</a>
+                    My work can also be found <a href="https://rnnk59vxgv.wixsite.com/website-3" target="_blank">HERE</a>
+                </div>
+                <div class="message">
+                    <div class="sender">
+                        Hoài An <span class="timestamp">00:00</span>
+                    </div>
+                    Drop me an email: <a href="mailto:hhoaian.me@gmail.com">hhoaian.me@gmail.com</a>
+                </div>
+                <div class="message">
+                    <div class="sender">
+                        Hoài An <span class="timestamp">00:00</span>
+                    </div>
+                    Give me a call at: <a href="tel:+84829720398">(+84) 829 720 398</a>
                 </div>
             </div>
             <div class="chat-input">
@@ -596,11 +579,6 @@
 
             chatClose.addEventListener('click', () => {
                 chatWindow.classList.remove('show');
-            });
-
-            const usersBtn = document.querySelector('.users');
-            usersBtn.addEventListener('click', () => {
-                window.open('https://rnnk59vxgv.wixsite.com/website-3/monologue', '_blank');
             });
         });
     </script>
